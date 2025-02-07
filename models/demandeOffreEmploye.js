@@ -2,25 +2,34 @@ const mongoose = require('mongoose');
 
 const DemandeOffreEmploye =mongoose.model('DemandeOffreEmploye', {
 
-    
-    
     statut: {
-        type: String
+        type: String,
+        enum: ["EN_ATTENTE", "APPROUVÉE", "REJETÉE"],
+        required: true
     },
-    contenue:{
-        type: String
+    contenue: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    date_demande:{
+        type: Date,
+        default: Date.now
     },
     id_employe:{
         type: mongoose.Types.ObjectId,
-                ref:"Utilisateur"
+        ref:"Utilisateur",
+        require:true
     },
     id_offre:{
         type: mongoose.Types.ObjectId,
-                ref:"Offre"
+        ref:"Offre",
+        require:true
     },
     id_entreprise:{
         type: mongoose.Types.ObjectId,
-                ref:"Entreprise"
+        ref:"Entreprise",
+        require:true
     }
 
 })

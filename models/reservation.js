@@ -5,18 +5,23 @@ const Reservation =mongoose.model('Reservation', {
     
     statut: {
         type: String,
-        required
+        required:true,
+        enum: ["EN_ATTENTE", "CONFIRMÉE", "ANNULÉE"],
     },
     id_employe:{
         type: mongoose.Types.ObjectId,
-        ref:"Utilisateur"
+        ref:"Utilisateur",
+        require:true
     },
     id_offre:{
         type: mongoose.Types.ObjectId,
-        ref:"Offre"
+        ref:"Offre",
+        require:true
     },
     date_reservation:{
-        type: String
+        type : Date,
+        default: Date.now,
+        require:true
     }
 
 })

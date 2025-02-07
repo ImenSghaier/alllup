@@ -3,20 +3,35 @@ const mongoose = require('mongoose');
 const Offre =mongoose.model('Offre', {
 
     titre:{
-        type: String
+        type: String,
+        require:true,
+        trim : true
     },
     description:{
-        type: String
+        type: String,
+        require:true,
+        trim : true
     },
     prix: {
-        type: String
+        type: String,
+        require:true
     },
     type:{
-        type: String
+        type: String,
+        required: true,
+        enum: ["PROMOTION", "REDUCTION", "BON_PLAN"]
     },
+    image: {
+        type: String, 
+    },
+    statut: {
+        type: String,
+        enum: ["ACTIF", "EXPIRÉ"], 
+        default: "ACTIF",
+      },
     id_fournisseur:{
         type: mongoose.Types.ObjectId,
-                ref:"Utilisateur"
+        ref:"Utilisateur"
     }
 
 })

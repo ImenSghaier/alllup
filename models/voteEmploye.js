@@ -3,18 +3,25 @@ const mongoose = require('mongoose');
 const VoteEmploye =mongoose.model('VoteEmploye', {
 
     commantaire:{
-        type: String
+        type: String,
+        require: false,
+        lowercase: true
     },
     vote:{
-        type: String
+        type: Number,
+        min: 1, 
+        max: 5, 
+        require: false
     },
     id_offre:{
         type: mongoose.Types.ObjectId,
-                ref:"Offre"
+        ref:"Offre",
+        require:true
     },
     id_employe:{
         type: mongoose.Types.ObjectId,
-                ref:"Utilisateur"
+        ref:"Utilisateur",
+        require:true
     }
 
 })
